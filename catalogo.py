@@ -1,5 +1,5 @@
 import json
-from satelite import Satelite
+from satelite import El_Satelite
 from funciones_base import obtener_posicion
 
 def leer_json(dato):
@@ -13,8 +13,13 @@ def crear_catalogo(registros):
         nombre = registro["OBJECT_NAME"]
         numero_catalogo = registro["NORAD_CAT_ID"]
         latitud, longitud, altitud = obtener_posicion(registro)
-        satelite = Satelite(nombre, numero_catalogo, latitud, longitud, altitud)
-        catalogo.append(satelite)
+        try:
+            satelite = El_Satelite(nombre, numero_catalogo, latitud, longitud, altitud) #crea las variables y funciones del satelite
+            catalogo.append(satelite) # catalogo guarda todas las variables y funciones de la clase para cada satelite
+        except ValueError:
+            continue
+        #uso try except para que si encuentra algun error como por ejemplo
+        #que la altitud es menor a 100, simplemente ignore al satelite y siga con los otros
     return catalogo
 def resumir_satelites(catalogo):
     resumen = {}

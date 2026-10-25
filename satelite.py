@@ -1,4 +1,4 @@
-class Satelite:
+class El_Satelite:
     def __init__(self, nombre, numero_catalogo, latitud, longitud, altitud):
 
         if -90 > latitud or latitud > 90: 
@@ -19,7 +19,7 @@ class Satelite:
         self.altitud = altitud 
 
     def tipo_orbita(self):
-        
+
         if self.altitud < 2000:
             return "LEO"
         if self.altitud < 34000:
@@ -29,7 +29,7 @@ class Satelite:
         if self.altitud > 37000:
             return "HEO"
         
-    def cadena_str(self):
+    def __str__(self): #_str_ hace que la clase "El_Satelite" tenga como predeterminado este texto cuando se quiera imprimir
         return f"{self.nombre} | {self.numero_catalogo} | {self.tipo_orbita()} | {self.altitud} km"
     
     def en_zona_sat(self, longitud_mínima, latitud_mínima, longitud_máxima, latitud_máxima):

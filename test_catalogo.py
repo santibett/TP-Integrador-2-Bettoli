@@ -60,5 +60,20 @@ salida_resumir = {"LEO": {
         }}
 def test_resumir_satelites_valido():
     assert resumir_satelites(catalogo_prueba) == salida_resumir
-#def test_resumir_satelites_invalido():
+def test_resumir_satelites_invalido():
+    assert resumir_satelites([]) == {} #deberia dar un diccionario vacio si le paso una lista 
+    with pytest.raises(AttributeError):
+            resumir_satelites(["hola", "2", "30"])
+    with pytest.raises(TypeError):
+            resumir_satelites(2)
+def test_satelites_en_zona_valido():
+     resultado_prueba = satelites_en_zona(catalogo_prueba, -1000, -1000, 10000, 10000)
+     assert resultado_prueba[0].nombre == "CALSPHERE 1"
+     assert resultado_prueba[0].numero_catalogo == 900
+     assert satelites_en_zona(catalogo_prueba, 0,0,0,0) == [] #ningun satelite cae en esa zona
+def test_satelites_en_zona_invalido():
+    with pytest.raises(TypeError):
+        satelites_en_zona(0,0,0,0) 
+    with pytest.raises(TypeError):
+        satelites_en_zona("hola")
     

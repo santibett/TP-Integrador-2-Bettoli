@@ -1,5 +1,6 @@
 class Satelite:
     def __init__(self, nombre, numero_catalogo, latitud, longitud, altitud):
+
         if -90 > latitud or latitud > 90: 
             raise ValueError("Latitud fuera de rango")
         if -180 > longitud or longitud > 180:
@@ -10,23 +11,27 @@ class Satelite:
             raise ValueError("Nombre vacio")
         if type(numero_catalogo) is not int :
             raise ValueError("El catalogo no es un entero")
+        
         self.nombre = nombre 
         self.numero_catalogo = numero_catalogo
         self.latitud = latitud
         self.longitud = longitud
         self.altitud = altitud 
+
     def tipo_orbita(self):
-        orbita = ""
-        if self.altitud < 2000:
-            orbita == "LEO"
-        if self.altitud < 34000:
-            orbita == "LEO"
-        if self.altitud < 37000:
-            orbita == "LEO"
-        if self.altitud < 37000:
-            orbita == "LEO"
         
-
-
-
-        ISS (ZARYA) | 25544 | LEO | 419.7 km
+        if self.altitud < 2000:
+            return "LEO"
+        if self.altitud < 34000:
+            return "MEO"
+        if self.altitud <= 37000:
+            return "GEO"
+        if self.altitud > 37000:
+            return "HEO"
+        
+    def cadena_str(self):
+        return f"{self.nombre} | {self.numero_catalogo} | {self.tipo_orbita()} | {self.altitud} km"
+    
+    def en_zona_sat(self, longitud_mínima, latitud_mínima, longitud_máxima, latitud_máxima):
+        return (longitud_mínima <= self.longitud <= longitud_máxima) and (latitud_mínima <= self.latitud <= latitud_máxima)
+    

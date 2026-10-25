@@ -6,10 +6,10 @@ def leer_json(dato):
     with open(dato, "r") as archivo:
         datos = json.load(archivo)
     return (datos)
-def crear_catalogo(registros):
+def crear_catalogo(datos):
     #recibe la lista de diccionarios del JSON y devuelve una lista de objetos satelites
     catalogo = []
-    for registro in registros:
+    for registro in datos:
         nombre = registro["OBJECT_NAME"]
         numero_catalogo = registro["NORAD_CAT_ID"]
         latitud, longitud, altitud = obtener_posicion(registro)

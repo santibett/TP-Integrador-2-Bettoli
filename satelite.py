@@ -29,7 +29,7 @@ class El_Satelite:
         if self.altitud > 37000:
             return "HEO"
         
-    def __str__(self): #_str_ hace que la clase "El_Satelite" tenga como predeterminado este texto cuando se quiera imprimir
+    def mostrar(self): 
         return f"{self.nombre} | {self.numero_catalogo} | {self.tipo_orbita()} | {self.altitud} km"
     
     def en_zona_sat(self, longitud_mínima, latitud_mínima, longitud_máxima, latitud_máxima):

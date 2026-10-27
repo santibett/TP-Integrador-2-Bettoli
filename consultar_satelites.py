@@ -35,5 +35,5 @@ def main():
         print(f"Longitud ({longitud_min} ; {longitud_max})")
         print(f"Cantidad: {len(en_zona)}")
         for i in en_zona:
-            print(i) #i guarda los datos de la clase y cuando imprimo va al _str_, imprimiendo el formato deseado
+            print(i.mostrar()) 
 main()
